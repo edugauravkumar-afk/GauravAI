@@ -5,6 +5,7 @@ One page to run the project from. Detailed material lives in `docs/`:
 - `docs/storybook-channel-launch-kit.md`: name, identity lock, 50-story backlog, scripts 1-3, description template
 - `docs/top-channels-research-and-higgsfield-plan.md`: why this channel, benchmarks, YouTube policy, Higgsfield capabilities
 - `docs/faceless-youtube-strategy.md`: packaging rules, thumbnails, retention, the later AI explainer channel
+- `docs/competitors-and-profit-estimate.md`: competitor stats and earnings, cost base, three profit scenarios
 
 Owner key: **You** = Gaurav does it. **Claude** = done in this session on request. **Both** = you decide, Claude executes.
 
@@ -57,6 +58,7 @@ Weekly 20-minute review (you + Claude): open YouTube Studio, look at the retenti
 | # | Task | Owner |
 |---|---|---|
 | 3.1 | Continue 2-3 episodes a week from the backlog, episodes 11-25 (still Indian) | Both |
+| 3.1b | From week 5, one 8-12 minute collection episode a week built from 3-4 existing tales plus new linking narration. Crosses the mid-roll line and roughly doubles RPM. | Both |
 | 3.2 | Create playlists: Mahabharata, Ramayana, Panchatantra, Folklore | You |
 | 3.3 | Reply to every comment within 24 hours for the first 90 days | You |
 | 3.4 | After episode 20, Claude writes the first 10-minute History documentary script (Watercolor Chronicle). Candidate: "The dice game that lost a kingdom" told as a full chronicle. | Claude |
