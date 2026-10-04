@@ -11,6 +11,36 @@ Owner key: **You** = Gaurav does it. **Claude** = done in this session on reques
 
 ---
 
+## Money-first revision (4 October 2026)
+
+Goal restated: earn money, not just grow. The competitor data changes the product mix.
+
+| Decision | Before | Now |
+|---|---|---|
+| Core unit | 2-3 min myth tale | **8-15 min history documentary** (History type, Watercolor Chronicle long-form). Mid-rolls from day one. |
+| Short tales | the product | the funnel: 2 a week for discovery and Shorts |
+| Audience | India first | **global English, US/UK topics**. A US view pays ~20x an Indian view. |
+| Topic slant | myths only | **history of money, power, empires, bubbles and fortunes**. Pulls finance-grade advertisers onto a history channel. Myths stay as the short tales. |
+| Hindi channel | core sister channel | optional, start only when the main channel is monetised |
+| Weekly output | 2-3 tales | 1 documentary + 2 tales + Shorts |
+| Second channel | myths vs explainers | AI-tools explainer for a US audience from month 4, chosen for affiliate income (20-30% recurring) and your authority |
+
+Channel name stays Tales Before Time. It covers both history and myth, as See U in History / Mythology does.
+
+First ten documentary topics (money-and-power slant, global search demand):
+1. How a trading company conquered India
+2. The richest man who ever lived (Mansa Musa)
+3. The afternoon the 1929 market broke
+4. The man who sold the Eiffel Tower twice
+5. Tulip mania: the first bubble
+6. The year without a summer (1816)
+7. The day Rome ran out of money
+8. The emperor who built a city and abandoned it (Fatehpur Sikri)
+9. The pirate who ran a company (Henry Every)
+10. How the Rothschilds knew Waterloo first
+
+Money timeline (base case): months 1-3 zero; months 4-6 $300-1,500 a month from ads plus book and Audible affiliates; months 6-12 $2K-6K a month with the first sponsor at 30-50K subs. Details in `docs/competitors-and-profit-estimate.md`.
+
 ## Phase 0: Unblock (this week, about 1 hour of your time)
 
 | # | Task | Owner | Done when |
