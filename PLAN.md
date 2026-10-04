@@ -1,4 +1,18 @@
-# Master Plan: Tales Before Time
+# Master Plan
+
+## Current decision (4 October 2026): faceless tech channel first
+
+The primary channel is a faceless AI-automation tutorial channel, working name
+"simpler than that". Screen recordings plus voice, no face, Higgsfield for hooks, B-roll
+and thumbnails. Money starts with services and templates in month 1 and 2, ads from
+month 4. The full step-by-step process is in `docs/tech-channel-playbook.md`.
+
+The history and myth channel below (Tales Before Time) is paused. Restart it once the
+tech channel and its services earn steadily. Everything below is kept for that.
+
+---
+
+# Paused plan: Tales Before Time
 
 One page to run the project from. Detailed material lives in `docs/`:
 
