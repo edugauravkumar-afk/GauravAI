@@ -70,6 +70,10 @@ pre.tpl{font-family:var(--mono);font-size:13.5px;line-height:1.55;background:var
 .ok{color:var(--money);font-weight:600}
 .no{color:var(--cue);font-weight:600}
 .stack{display:grid;gap:12px}
+code{font-family:var(--mono);font-size:.86em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 5px;overflow-wrap:anywhere}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.node .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.flow{font-family:var(--mono);font-size:13.5px;line-height:1.7;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;white-space:pre;margin:0}
 a{color:var(--accent)}
 </style>
 
@@ -87,7 +91,7 @@ a{color:var(--accent)}
 </header>
 
 <nav class="chips" aria-label="Sections">
-  <a href="#research">Research</a><a href="#setup">Setup</a><a href="#video">Every video</a><a href="#money">Money</a><a href="#week">Weekly rhythm</a><a href="#ideas">First 10 videos</a><a href="#script">Video 1 script</a><a href="#now">Do now</a>
+  <a href="#research">Research</a><a href="#setup">Setup</a><a href="#video">Every video</a><a href="#money">Money</a><a href="#week">Weekly rhythm</a><a href="#ideas">First 10 videos</a><a href="#guide">Who guides you</a><a href="#build">Video 1 build</a><a href="#script">Video 1 script</a><a href="#now">Do now</a>
 </nav>
 
 
@@ -428,10 +432,146 @@ Narration uses an AI voice.   ← delete if your voice
   </table></div>
 </section>
 
+
+<section class="part" id="guide">
+  <div class="eyebrow">How we work together</div>
+  <h2>Who guides you: Claude, every week</h2>
+  <p class="part-intro">You build, record and upload. I pick the topic, write the build guide, the script and the packaging, and help when you get stuck. Everything is saved in your project files, so any future chat with me can pick up where we left off.</p>
+  <div class="tbl"><table>
+    <tr><th>When</th><th>You say</th><th>You get from me</th></tr>
+    <tr><td>Saturday morning</td><td>“Week 2 topic”</td><td>A checked topic, a click-by-click build guide, sample test data, the script, three titles, a thumbnail idea and the description</td></tr>
+    <tr><td>While building</td><td>A screenshot of the error, plus the step number</td><td>The exact fix</td></tr>
+    <tr><td>Before recording</td><td>“Check my script” with your edits</td><td>Tightened script, timing check</td></tr>
+    <tr><td>48 hours after upload</td><td>Click-through rate, average view duration, top comments</td><td>What to change in next week's video</td></tr>
+    <tr><td>End of month</td><td>“Monthly review”</td><td>Next month's four topics, ranked by what is working</td></tr>
+    <tr><td>First client lead</td><td>What the client asked for</td><td>A scoped offer, price and reply</td></tr>
+  </table></div>
+  <div class="callout" style="margin-top:12px"><strong>Your topic for week 1 is decided:</strong> invoices on autopilot. Admin and bookkeeping are among the top four tasks small businesses want automated, every business has invoices, and the result is easy to see on screen.</div>
+</section>
+
+<section class="part" id="build">
+  <div class="eyebrow">Week 1 · do this off camera first</div>
+  <h2>Video 1 build guide: invoices on autopilot</h2>
+  <p class="part-intro">About 2 hours the first time, on a laptop or desktop. An invoice email arrives, AI reads the PDF, and the details land in a Google Sheet. Scanned invoices with no readable text go to a “Needs check” tab instead of making blank rows.</p>
+
+<pre class="flow">New invoice email ─► Read the PDF ─► Is it scanned?
+                                        ├─ no  ─► AI reads the invoice ─► Add to invoice log
+                                        └─ yes ─► Flag for manual check</pre>
+
+  <h3 class="sub">Sample invoices</h3>
+  <p>I made four fake invoices for you to test and record with, so no real data ever appears on screen. On your laptop, open your GitHub project, switch to the branch <code>claude/faceless-youtube-strategy-sfms0j</code>, and open the folder <code>video-01-invoices/sample-invoices</code>.</p>
+  <div class="tbl" style="margin-top:10px"><table>
+    <tr><th>File</th><th>Vendor</th><th>Total</th><th>Purpose</th></tr>
+    <tr><td>invoice-brightlane-design.pdf</td><td>Brightlane Design Studio</td><td class="num">£1,308.00</td><td>Normal PDF, UK</td></tr>
+    <tr><td>invoice-cloudnest-hosting.pdf</td><td>CloudNest Hosting Inc.</td><td class="num">$71.00</td><td>Normal PDF, US</td></tr>
+    <tr><td>invoice-sharma-accounting.pdf</td><td>Sharma &amp; Co.</td><td class="num">Rs. 14,750.00</td><td>Normal PDF, India</td></tr>
+    <tr><td>invoice-patel-supplies-SCANNED.pdf</td><td>Patel Office Supplies</td><td class="num">Rs. 7,493.00</td><td>Scanned, no text. The gotcha.</td></tr>
+  </table></div>
+
+  <h3 class="sub">Part 0 · Accounts <span class="time">30 min, once</span></h3>
+  <ol class="plain">
+    <li><strong>Gmail:</strong> in the channel Gmail, create a label called <code>Invoices</code>.</li>
+    <li><strong>Google Sheet</strong> named <code>Invoice Log</code>. Tab <code>Invoices</code> with headers: Vendor, Invoice date, Amount, Currency, Due date, Email link, Added at. Tab <code>Needs check</code> with headers: From, Subject, Email link, Added at.</li>
+    <li><strong>n8n:</strong> start the Cloud free trial at n8n.io. 14 days, no card. Afterwards Starter is about $24 a month, or $20 billed yearly.</li>
+    <li><strong>AI key:</strong> at aistudio.google.com click Get API key, then Create API key. The free tier is enough.</li>
+    <li><strong>A second email account</strong> to send test invoices from.</li>
+  </ol>
+
+  <h3 class="sub">Part 1 · Gmail filter <span class="time">5 min</span></h3>
+  <ol class="plain">
+    <li>In Gmail, click the filter icon at the right of the search bar.</li>
+    <li>Has the words: <code>invoice OR "tax invoice"</code>. Tick Has attachment.</li>
+    <li>Create filter → Apply the label → <code>Invoices</code> → Create.</li>
+  </ol>
+
+  <h3 class="sub">Part 2 · The workflow <span class="time">60–90 min</span></h3>
+  <div class="stack">
+    <div class="node"><div class="tag">Node 1 · Gmail Trigger · “New invoice email”</div>
+      <ol class="plain">
+        <li>Plus → search Gmail → <strong>On message received</strong>.</li>
+        <li>Credential: Sign in with Google, using the channel Gmail.</li>
+        <li>Poll Times: Every Minute while testing.</li>
+        <li><strong>Simplify: OFF.</strong> With it on, attachments never arrive.</li>
+        <li>Filters → Label Names or IDs → <code>Invoices</code>.</li>
+        <li>Options → add <strong>Download Attachments: ON</strong>.</li>
+        <li>From your second account, email the Brightlane invoice with subject “Invoice October”. Wait until Gmail labels it.</li>
+        <li>Click <strong>Fetch Test Event</strong>. In the output, the Binary tab should show <code>attachment_0</code>.</li>
+      </ol>
+      <p class="muted">Keep this node's real name as “Gmail Trigger”, because later expressions use that name. Only change the label you show on screen, or map those fields by dragging.</p>
+    </div>
+    <div class="node"><div class="tag">Node 2 · Extract from File · “Read the PDF”</div>
+      <ol class="plain"><li>Plus → Extract from File → <strong>Extract From PDF</strong>.</li><li>Input Binary Field: <code>attachment_0</code>.</li><li>Test step. The output has a <code>text</code> field.</li></ol></div>
+    <div class="node"><div class="tag">Node 3 · If · “Is it scanned?”</div>
+      <ol class="plain"><li>Plus → If.</li><li>Value <code>{{ ($json.text || '').trim() }}</code>, type String, operation <strong>is empty</strong>.</li><li>True means scanned. False means a normal PDF.</li></ol></div>
+    <div class="node"><div class="tag">Node 4 · Information Extractor · “AI reads the invoice”</div>
+      <ol class="plain">
+        <li>From the <strong>False</strong> output: plus → Information Extractor.</li>
+        <li>Text: <code>{{ $json.text }}</code></li>
+        <li>Schema Type: <strong>From Attribute Descriptions</strong>, then add the five attributes below.</li>
+      </ol>
+      <div class="tbl"><table>
+        <tr><th>Name</th><th>Type</th><th>Description</th><th>Required</th></tr>
+        <tr><td>vendor</td><td>String</td><td>Company that sent the invoice</td><td>yes</td></tr>
+        <tr><td>invoice_date</td><td>String</td><td>Invoice date as YYYY-MM-DD</td><td>yes</td></tr>
+        <tr><td>amount</td><td>Number</td><td>Total amount due including tax. Number only, no currency symbol</td><td>yes</td></tr>
+        <tr><td>currency</td><td>String</td><td>Three-letter currency code such as USD, GBP or INR</td><td>yes</td></tr>
+        <tr><td>due_date</td><td>String</td><td>Due date as YYYY-MM-DD. Leave empty if none is printed</td><td>no</td></tr>
+      </table></div>
+      <ol class="plain" start="4">
+        <li>Options → System Prompt Template → add at the end: <code>Only use information printed on the invoice. Never guess a value that is not there.</code></li>
+        <li>Under the node, plus on <strong>Model</strong> → <strong>Google Gemini Chat Model</strong> → new credential with your AI Studio key → pick a current Flash model.</li>
+        <li>Test step. The output shows <code>output.vendor</code>, <code>output.amount</code> and the rest.</li>
+      </ol></div>
+    <div class="node"><div class="tag">Node 5 · Google Sheets · “Add to invoice log”</div>
+      <ol class="plain"><li>Plus → Google Sheets → <strong>Append row in sheet</strong>.</li><li>Document <code>Invoice Log</code>, sheet <code>Invoices</code>, Map Each Column Manually.</li></ol>
+      <div class="tbl"><table>
+        <tr><th>Column</th><th>Value</th></tr>
+        <tr><td>Vendor</td><td><code>{{ $json.output.vendor }}</code></td></tr>
+        <tr><td>Invoice date</td><td><code>{{ $json.output.invoice_date }}</code></td></tr>
+        <tr><td>Amount</td><td><code>{{ $json.output.amount }}</code></td></tr>
+        <tr><td>Currency</td><td><code>{{ $json.output.currency }}</code></td></tr>
+        <tr><td>Due date</td><td><code>{{ $json.output.due_date }}</code></td></tr>
+        <tr><td>Email link</td><td><code>https://mail.google.com/mail/u/0/#all/{{ $('Gmail Trigger').item.json.id }}</code></td></tr>
+        <tr><td>Added at</td><td><code>{{ $now.toFormat('yyyy-MM-dd HH:mm') }}</code></td></tr>
+      </table></div>
+      <p>Test step. A row appears in the sheet.</p></div>
+    <div class="node"><div class="tag">Node 6 · Google Sheets · “Flag for manual check”</div>
+      <ol class="plain"><li>From the <strong>True</strong> output of node 3: Google Sheets → Append row in sheet → sheet <code>Needs check</code>.</li><li>From and Subject: drag those fields from the Gmail Trigger output on the left panel into the boxes.</li><li>Email link and Added at: same as node 5.</li></ol></div>
+  </div>
+
+  <h3 class="sub">Part 3 · Full test <span class="time">15 min</span></h3>
+  <p>Email all four samples to the channel Gmail, one email each, subject starting “Invoice”. You should see:</p>
+  <div class="tbl" style="margin-top:10px"><table>
+    <tr><th>Sample</th><th>Tab</th><th>Amount</th><th>Currency</th><th>Due date</th></tr>
+    <tr><td>Brightlane</td><td>Invoices</td><td class="num">1308</td><td>GBP</td><td class="num">2026-10-31</td></tr>
+    <tr><td>CloudNest</td><td>Invoices</td><td class="num">71</td><td>USD</td><td class="num">2026-10-16</td></tr>
+    <tr><td>Sharma &amp; Co.</td><td>Invoices</td><td class="num">14750</td><td>INR</td><td class="num">2026-10-18</td></tr>
+    <tr><td>Patel (scanned)</td><td>Needs check</td><td colspan="3">sender and subject only</td></tr>
+  </table></div>
+
+  <h3 class="sub">Part 4 · Switch it on, and save the template <span class="time">10 min</span></h3>
+  <ol class="plain">
+    <li>Turn the workflow on with the Active toggle, called Publish in newer n8n versions. Set Poll Times to every 5 minutes.</li>
+    <li>Workflow menu → Download. n8n leaves your credentials out of the file.</li>
+    <li>Copy the sheet with headers only and share it as view-only. Both links go in the video description.</li>
+  </ol>
+
+  <h3 class="sub">If something breaks</h3>
+  <div class="tbl"><table>
+    <tr><th>What you see</th><th>Fix</th></tr>
+    <tr><td>No <code>attachment_0</code> in node 1</td><td>Turn Simplify off and Download Attachments on, then fetch again</td></tr>
+    <tr><td>Node 2 text is empty</td><td>The PDF is scanned. That is expected for the Patel sample.</td></tr>
+    <tr><td>Error 429 from Gemini</td><td>Free-tier limit. Wait a minute and run again.</td></tr>
+    <tr><td>Sheet columns missing in node 5</td><td>Add the header row in the sheet, then reselect the sheet</td></tr>
+    <tr><td>Trigger never fires</td><td>Check the label name, switch the workflow on, wait a minute</td></tr>
+    <tr><td>Anything else</td><td>Send me a screenshot with the node number</td></tr>
+  </table></div>
+</section>
+
 <section class="part" id="script">
   <div class="eyebrow">Part F · ready to record</div>
   <h2>Video 1 script</h2>
-  <p class="part-intro">“I automated my invoices in 20 minutes (no code).” An invoice email arrives, AI reads the PDF, and the vendor, date, amount and due date land in a Google Sheet. Use n8n or Make, whichever you are faster in. Target 9 to 10 minutes. Swap in the exact tool names you used before recording.</p>
+  <p class="part-intro">“I automated my invoices in 20 minutes (no code).” An invoice email arrives, AI reads the PDF, and the vendor, date, amount and due date land in a Google Sheet. Built in n8n with the build guide above. Target 9 to 10 minutes.</p>
   <div class="script">
     <div class="cue">An inbox with three new invoice emails. A Google Sheet beside it. Rows appear one by one.</div>
     <p>Three invoices just arrived. I didn't open any of them. They're already in my sheet, with the vendor, the amount, and the due date. This used to take me an hour every Friday. Today you're going to build the same thing, and it takes about twenty minutes.</p>
@@ -451,11 +591,11 @@ Narration uses an AI voice.   ← delete if your voice
     <div class="cue">Test run output showing the four fields.</div>
     <p>Run it. Vendor, date, amount, due date. Clean.</p>
     <div class="label">The gotcha</div>
-    <p>Now the mistake that cost me half an hour. Some invoices are scanned images, not real PDFs, so there's no text to extract and the AI gets nothing. The fix: add an “if” check. If the extracted text is empty, send it to an OCR step first. Two minutes to add, and it saves you from silent blank rows.</p>
+    <p>Now the mistake that cost me half an hour. Some invoices are scanned images, not real PDFs, so there's no text to read and the AI gets nothing. It doesn't fail loudly. It just writes a blank row. The fix: one “if” check. If the extracted text is empty, the invoice goes to a second tab called “Needs check” instead. Thirty seconds to add, and you never lose an invoice silently.</p>
     <div class="label">Step 4 of 4 · Write to the sheet</div>
     <p>Step four. Add a Google Sheets step, choose append row, and map the four fields to your four columns. Add a fifth column with a link back to the email, so you can always check the original.</p>
-    <div class="cue">Three fresh test invoices sent, one scanned. Rows appear.</div>
-    <p>Let's test it properly. Three new invoices, three different vendors, one scanned. Wait for it. One. Two. Three. All four fields, all three rows, including the scanned one.</p>
+    <div class="cue">Four test invoices sent, one scanned. Rows appear, and the scanned one lands in “Needs check”.</div>
+    <p>Let's test it properly. Four new invoices, three normal and one scanned. Wait for it. One. Two. Three. All the fields, all three rows. And the scanned one is waiting in “Needs check”, not lost.</p>
     <div class="cue">Workflow switched to active.</div>
     <p>Switch it on, and you're done. From now on, invoices file themselves.</p>
     <p>If you want to go one step further, add a daily check that emails you every invoice due in the next three days. That's the next video.</p>
@@ -470,8 +610,8 @@ Narration uses an AI voice.   ← delete if your voice
     <li>Buy deskonautopilot.com at Cloudflare, about ₹1,000.</li>
     <li>Claim @deskonautopilot on YouTube, Instagram, X, LinkedIn and Gumroad.</li>
     <li>Install OBS and set up the clean recording profile.</li>
-    <li>Build the invoice automation once, off camera, and note every mistake.</li>
-  </ol>
+    <li>Follow the video 1 build guide once, off camera.</li>
+      </ol>
   <p class="muted" style="margin-top:12px">Paused, not cancelled: the history channel “Tales Before Time”. Everything for it is saved in the project files.</p>
 </div>
 </div>

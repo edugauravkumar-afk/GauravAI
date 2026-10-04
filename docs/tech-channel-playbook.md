@@ -329,9 +329,10 @@ Run it. Vendor, date, amount, due date. Clean.
 [SCREEN: step label "Gotcha".]
 
 Now the mistake that cost me half an hour. Some invoices are scanned images, not real
-PDFs, so there's no text to extract and the AI gets nothing. The fix: add an "if" check.
-If the extracted text is empty, send it to an OCR step first. Two minutes to add, and
-it saves you from silent blank rows.
+PDFs, so there's no text to read and the AI gets nothing. It doesn't fail loudly. It just
+writes a blank row. The fix: one "if" check. If the extracted text is empty, the invoice
+goes to a second tab called "Needs check" instead. Thirty seconds to add, and you never
+lose an invoice silently.
 
 [SCREEN: step label "Step 4 of 4: Write to the sheet".]
 
@@ -341,8 +342,9 @@ the original.
 
 [SCREEN: three fresh test invoices sent, rows appearing.]
 
-Let's test it properly. Three new invoices, three different vendors, one scanned.
-Wait for it. One. Two. Three. All four fields, all three rows, including the scanned one.
+Let's test it properly. Four new invoices, three normal and one scanned.
+Wait for it. One. Two. Three. All the fields, all three rows. And the scanned one is waiting in
+"Needs check", not lost.
 
 [SCREEN: workflow switched to active.]
 
