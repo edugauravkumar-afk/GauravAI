@@ -2,8 +2,9 @@
 
 ## Current decision (4 October 2026): faceless tech channel first
 
-The primary channel is a faceless AI-automation tutorial channel, working name
-"simpler than that". Screen recordings plus voice, no face, Higgsfield for hooks, B-roll
+The primary channel is a faceless AI-automation tutorial channel named
+"Desk on Autopilot" (deskonautopilot.com, @deskonautopilot). Research in
+`docs/name-audience-domain-research.md`. Screen recordings plus voice, no face, Higgsfield for hooks, B-roll
 and thumbnails. Money starts with services and templates in month 1 and 2, ads from
 month 4. The full step-by-step process is in `docs/tech-channel-playbook.md`.
 

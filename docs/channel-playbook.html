@@ -1,0 +1,477 @@
+<title>Desk on Autopilot Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single reading column, sticky section chips, steps as a numbered track, tables scroll in their own box */
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --fg:#151821; --muted:#5B6270; --line:#DDE1E8;
+  --accent:#2747C8; --accent-soft:#E7ECFB; --money:#1F7A4D; --money-soft:#E4F3EB; --cue:#7A4B00; --cue-soft:#FFF3DC;
+  --display:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1218; --surface:#171B23; --fg:#E7EAF0; --muted:#9AA2B1; --line:#2A303C;
+  --accent:#93A8FF; --accent-soft:#1E2640; --money:#6FD3A0; --money-soft:#16271F; --cue:#F2C46B; --cue-soft:#2A2214; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1218; --surface:#171B23; --fg:#E7EAF0; --muted:#9AA2B1; --line:#2A303C;
+  --accent:#93A8FF; --accent-soft:#1E2640; --money:#6FD3A0; --money-soft:#16271F; --cue:#F2C46B; --cue-soft:#2A2214; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:760px;margin:0 auto}
+header.top{padding-block:40px 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,52px);line-height:1.05;margin:8px 0 12px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,4.5vw,30px);line-height:1.15;margin:0 0 6px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.25;margin:0;text-wrap:balance}
+p{margin:0}
+.lede{font-size:19px;color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.fact{font-family:var(--mono);font-size:13px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px}
+nav.chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+nav.chips a{display:inline-block;font-size:14px;font-weight:600;color:var(--fg);text-decoration:none;padding:6px 12px;border-radius:999px;margin-right:6px;border:1px solid var(--line);background:var(--surface)}
+nav.chips a:focus-visible,nav.chips a:hover{border-color:var(--accent);color:var(--accent);outline:none}
+section.part{padding-top:44px;scroll-margin-top:60px}
+.part-intro{color:var(--muted);margin-bottom:22px;max-width:62ch}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s var(--start,0)}
+ol.steps>li{counter-increment:s;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 18px 64px;min-width:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:16px;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-weight:600;font-size:15px;display:grid;place-items:center}
+.step-body{display:grid;gap:10px;margin-top:8px}
+.time{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:6px;font-weight:400}
+ul.plain,ol.plain{margin:0;padding-left:20px;display:grid;gap:4px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:480px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--bg)}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.callout{border-radius:10px;padding:12px 14px;background:var(--accent-soft);font-size:15.5px}
+.callout.money{background:var(--money-soft)}
+.callout strong{font-weight:600}
+pre.tpl{font-family:var(--mono);font-size:13.5px;line-height:1.55;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;margin:0;white-space:pre}
+.money-row td:first-child{font-family:var(--mono);font-size:13px;color:var(--money);white-space:nowrap}
+.script{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px}
+.script p{max-width:65ch}
+.cue{font-family:var(--mono);font-size:13px;background:var(--cue-soft);color:var(--cue);border-radius:8px;padding:8px 10px}
+.cue::before{content:"SCREEN  ";font-weight:600;letter-spacing:.06em}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.next{margin-top:44px;background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:20px}
+.next ol{margin:10px 0 0;padding-left:22px;display:grid;gap:6px}
+.muted{color:var(--muted)}
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:22px}
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.verdict .k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.verdict .v{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.2;margin-top:4px}
+.verdict p{font-size:14.5px;color:var(--muted);margin-top:6px}
+.sub{font-family:var(--display);font-weight:600;font-size:19px;margin:28px 0 10px}
+.ok{color:var(--money);font-weight:600}
+.no{color:var(--cue);font-weight:600}
+.stack{display:grid;gap:12px}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Faceless tech channel · playbook · updated 4 Oct 2026</div>
+  <h1>Desk on Autopilot</h1>
+  <p class="lede">For small-business owners who are drowning in admin. Every video puts one real task on autopilot with AI, recorded on screen from start to finish. No face. Your voice or a disclosed AI voice. Higgsfield makes the hooks, B-roll and thumbnails.</p>
+  <div class="facts">
+    <span class="fact">8–12 min videos</span>
+    <span class="fact">1 video + 3 Shorts / week</span>
+    <span class="fact">~8 hrs / week</span>
+    <span class="fact">money from week 2</span>
+  </div>
+</header>
+
+<nav class="chips" aria-label="Sections">
+  <a href="#research">Research</a><a href="#setup">Setup</a><a href="#video">Every video</a><a href="#money">Money</a><a href="#week">Weekly rhythm</a><a href="#ideas">First 10 videos</a><a href="#script">Video 1 script</a><a href="#now">Do now</a>
+</nav>
+
+
+<section class="part" id="research">
+  <div class="eyebrow">Research · done for you</div>
+  <h2>Name, audience and domain, decided</h2>
+  <p class="part-intro">I checked domains directly, studied the competing channels, and pulled market and pricing data. Here are the decisions, then the evidence.</p>
+
+  <div class="verdicts">
+    <div class="verdict"><div class="k">Channel name</div><div class="v">Desk on Autopilot</div><p>Handle @deskonautopilot. Backup: The Busywork Fix.</p></div>
+    <div class="verdict"><div class="k">Domain</div><div class="v">deskonautopilot.com</div><p>Unused. About ₹1,000 a year at Cloudflare.</p></div>
+    <div class="verdict"><div class="k">Audience</div><div class="v">Small-business owners</div><p>Not people trying to start an AI agency. That crowd is already served.</p></div>
+    <div class="verdict"><div class="k">Main tool on screen</div><div class="v">n8n</div><p>Fastest-growing automation tool, with a huge learner community.</p></div>
+  </div>
+
+  <h3 class="sub">Why the name changed</h3>
+  <div class="stack">
+    <p>simplerthanthat.com is already in use, and YouTube already has “Simpler”, “How to Simple” and “it's that simple”. A new channel lost among those names gets confused in search. “Desk on Autopilot” says the benefit in three words, and every .com, .in, .co and .io version is unused.</p>
+    <div class="tbl"><table>
+      <tr><th>Name</th><th>.com</th><th>.in</th><th>.co</th><th>.io</th><th>Verdict</th></tr>
+      <tr><td><strong>Desk on Autopilot</strong></td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td>Pick. Clear benefit, no channel found with this name.</td></tr>
+      <tr><td>The Busywork Fix</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td>Backup. Names the problem.</td></tr>
+      <tr><td>Quiet Automator</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td>OK, but “The Quiet Desk” channel exists.</td></tr>
+      <tr><td>Automate It Plainly</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td>OK, a little long.</td></tr>
+      <tr><td>Zero Busywork</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td class="no">taken</td><td>Too close to “ZeroWork”, an automation tool.</td></tr>
+      <tr><td>simpler than that</td><td class="no">taken</td><td class="ok">free</td><td class="ok">free</td><td class="ok">free</td><td>Dropped. .com taken, similar channels.</td></tr>
+      <tr><td>The Lazy Automator</td><td class="no">taken</td><td colspan="3">not checked</td><td>Dropped.</td></tr>
+      <tr><td>Zero Click Work</td><td class="no">taken</td><td colspan="3">not checked</td><td>Dropped.</td></tr>
+    </table></div>
+    <p class="muted">“Free” means the domain has no DNS records today, which almost always means it is unregistered. The registrar shows the final answer at checkout. YouTube itself was blocked from my side, so the handle check is step 2 below.</p>
+  </div>
+
+  <h3 class="sub">Who the audience is</h3>
+  <div class="tbl"><table>
+    <tr><th>Item</th><th>Finding</th></tr>
+    <tr><td>Who</td><td>Owners and managers of small service businesses: agencies, clinics, consultants, coaches, online sellers, accountants. Age 28 to 50. Not technical, already use ChatGPT.</td></tr>
+    <tr><td>Where</td><td>US, UK, Canada and Australia for income per view. English-speaking India for volume and for service clients.</td></tr>
+    <tr><td>How many use AI</td><td>74% to 89% of small businesses use or test AI tools in 2026, but only about 18% pay for any. They play with AI but have not automated anything yet. That gap is the channel.</td></tr>
+    <tr><td>What they want automated</td><td>Marketing content 53%, sales outreach 49%, customer service 46%, admin and scheduling 41%.</td></tr>
+  </table></div>
+
+  <h3 class="sub">The competitors, and the gap</h3>
+  <div class="tbl"><table>
+    <tr><th>Channel</th><th>Subscribers</th><th>What they sell</th><th>Face on camera</th></tr>
+    <tr><td>Nate Herk</td><td class="num">~1M</td><td>n8n tutorials, a 250K-member community. About $14K a month from ads.</td><td>Yes</td></tr>
+    <tr><td>Liam Ottley</td><td class="num">~700K–900K</td><td>The “AI automation agency” model. $7M+ business revenue, about $3K a month from ads.</td><td>Yes</td></tr>
+    <tr><td>Nick Saraev</td><td class="num">~530K</td><td>Paid community and an AI consultancy</td><td>Yes</td></tr>
+    <tr><td>Jono Catliff</td><td class="num">~140K</td><td>Automation agency, step-by-step blueprints</td><td>Yes</td></tr>
+  </table></div>
+  <div class="stack" style="margin-top:12px">
+    <p><strong>The gap.</strong> All four put their face on camera, and all four mainly teach people how to make money selling automations. Nobody big makes faceless videos for the business owner who just wants the task gone. That is your lane.</p>
+    <p><strong>The proof the money works.</strong> These channels earn far more from communities, consulting and agencies than from ads. Liam Ottley's ad income is about $3K a month, but his business makes millions. Your services offer follows the same model.</p>
+  </div>
+
+  <h3 class="sub">Market signals</h3>
+  <div class="tbl"><table>
+    <tr><th>Signal</th><th>Figure</th></tr>
+    <tr><td>n8n active users</td><td class="num">230,000+, 6× growth in a year</td></tr>
+    <tr><td>n8n company value</td><td class="num">$2.5 billion</td></tr>
+    <tr><td>r/n8n members</td><td class="num">200,000+</td></tr>
+    <tr><td>No-code and automation on YouTube</td><td class="num">about +220% growth in 2026</td></tr>
+  </table></div>
+
+  <h3 class="sub">What clients pay</h3>
+  <div class="tbl"><table>
+    <tr><th>Job</th><th>Market price</th><th>Your starting price</th></tr>
+    <tr><td>One simple workflow</td><td class="num">$300–1,200</td><td class="num">$300–500 abroad, ₹15K–25K India</td></tr>
+    <tr><td>A system of several workflows</td><td class="num">$1,500–5,000</td><td class="num">after 3 happy clients</td></tr>
+    <tr><td>Monthly upkeep</td><td class="num">$500–1,500</td><td class="num">$100–300 to start</td></tr>
+    <tr><td>Upwork n8n hourly</td><td class="num">median $23, top 10% $45+</td><td class="num">aim for $25–35</td></tr>
+  </table></div>
+
+  <h3 class="sub">Do these steps, in order</h3>
+  <ol class="steps" style="--start:0">
+    <li><h3>Buy the domain <span class="time">15 min · about ₹1,000</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>Go to dash.cloudflare.com and sign up with the new channel email.</li>
+        <li>Open <strong>Domain Registration</strong>, then <strong>Register Domains</strong>.</li>
+        <li>Search <strong>deskonautopilot.com</strong>. If it shows as available, buy one year. Cloudflare charges cost price, about $9.77, the same at renewal, with privacy included.</li>
+        <li>Optional: buy deskonautopilot.in at Porkbun for about ₹420 and point it to the .com later.</li>
+        <li>If the .com is somehow gone, repeat with <strong>thebusyworkfix.com</strong>.</li>
+      </ol></div></li>
+    <li><h3>Claim the YouTube handle <span class="time">10 min</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>Create the channel with the new Google account.</li>
+        <li>YouTube Studio → <strong>Customisation</strong> → <strong>Basic info</strong> → <strong>Handle</strong>.</li>
+        <li>Type <strong>deskonautopilot</strong>. A green tick means it is yours. Publish.</li>
+        <li>If taken, try <strong>deskonautopilothq</strong>, then switch to the backup name.</li>
+      </ol></div></li>
+    <li><h3>Claim the same name everywhere else <span class="time">20 min</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>Instagram: new account @deskonautopilot.</li>
+        <li>X: @deskonautopilot. X allows 15 characters, so this fits exactly.</li>
+        <li>LinkedIn: create a <strong>Company Page</strong> named Desk on Autopilot. This is where clients come from.</li>
+        <li>Gumroad: sign up with the same email and set the username to deskonautopilot.</li>
+      </ol></div></li>
+    <li><h3>Set up a business email <span class="time">10 min</span></h3>
+      <div class="step-body"><p>In Cloudflare, open <strong>Email Routing</strong> for the domain and forward hello@deskonautopilot.com to the channel Gmail. It is free and looks professional to clients.</p></div></li>
+  </ol>
+
+  <div class="callout" style="margin-top:16px"><strong>What I could not check.</strong> YouTube, Instagram and X block automated lookups from my side, so steps 2 and 3 confirm the handles. My keyword-volume tool needs more API units, so search volumes per keyword are not in this research. The audience and market figures come from published 2026 surveys and channel trackers.</div>
+</section>
+
+<section class="part" id="setup">
+  <div class="eyebrow">Part A · once, in week 1</div>
+  <h2>Set up the channel</h2>
+  <p class="part-intro">Six steps. Do them in order and finish within the first week.</p>
+  <ol class="steps" style="--start:0">
+    <li><h3>Name, domain and handles</h3>
+      <div class="step-body"><p>Decided in the Research section above: <strong>Desk on Autopilot</strong>, deskonautopilot.com, @deskonautopilot everywhere. Follow research steps 1 to 4.</p></div></li>
+    <li><h3>Decide who it is for</h3>
+      <div class="step-body">
+        <div class="tbl"><table>
+          <tr><th>Item</th><th>Lock</th></tr>
+          <tr><td>Audience</td><td>Owners and managers of small service businesses, age 28 to 50, not technical. US, UK, Canada, Australia, and English-speaking India.</td></tr>
+          <tr><td>Promise</td><td>One real task automated with AI per video, start to finish, no coding needed.</td></tr>
+          <tr><td>Banner line</td><td>Your admin, on autopilot. One real build every week.</td></tr>
+          <tr><td>About text</td><td>Every video automates one real task with AI tools, recorded start to finish on screen. No hype, no face, just the build. Narration may use an AI voice, disclosed on each video. Templates for every build are linked in the description.</td></tr>
+        </table></div>
+      </div></li>
+    <li><h3>Create the channel</h3>
+      <div class="step-body"><ol class="plain">
+        <li>Make a new Google account just for the channel, such as deskonautopilot@gmail.com.</li>
+        <li>Create the YouTube channel with the chosen name and handle.</li>
+        <li>Verify your phone number in YouTube Studio. This unlocks custom thumbnails and videos over 15 minutes.</li>
+        <li>Make a logo and banner in Higgsfield, same colours for both.</li>
+        <li>Paste the About text and add deskonautopilot.com.</li>
+        <li>Upload defaults: Science &amp; Technology, English, comments on, the description footer from step 15.</li>
+        <li>Create three playlists: Automate Your Business, AI Tools Tested, Quick Wins.</li>
+      </ol></div></li>
+    <li><h3>Lock the brand for the first 20 videos</h3>
+      <div class="step-body">
+        <div class="tbl"><table>
+          <tr><th>Element</th><th>Rule</th></tr>
+          <tr><td>Colours</td><td>One dark background, one bright accent, white text</td></tr>
+          <tr><td>Font</td><td>One bold sans-serif for thumbnails and on-screen text</td></tr>
+          <tr><td>Thumbnail</td><td>Messy task on the left, clean result on the right, arrow between, 3 words max</td></tr>
+          <tr><td>Title</td><td>“I put my [task] on autopilot” or “I automated [task] in [time]”</td></tr>
+          <tr><td>Intro</td><td>None. The video opens on the finished result.</td></tr>
+          <tr><td>Outro</td><td>10 seconds: “the template is in the description”, then an end screen</td></tr>
+        </table></div>
+      </div></li>
+    <li><h3>Set up your tools</h3>
+      <div class="step-body">
+        <div class="tbl"><table>
+          <tr><th>Job</th><th>Tool</th><th>Cost</th></tr>
+          <tr><td>Screen recording</td><td>OBS Studio</td><td class="num">Free</td></tr>
+          <tr><td>Editing</td><td>DaVinci Resolve or CapCut desktop</td><td class="num">Free</td></tr>
+          <tr><td>Mic, if your voice</td><td>Any USB condenser mic</td><td class="num">₹2,500–4,000 once</td></tr>
+          <tr><td>Voice cleanup</td><td>Adobe Podcast Enhance or Resolve voice isolation</td><td class="num">Free</td></tr>
+          <tr><td>AI voice, if not yours</td><td>ElevenLabs or Higgsfield voices</td><td class="num">$5–22 / month</td></tr>
+          <tr><td>Scripts</td><td>Claude</td><td class="num">Have it</td></tr>
+          <tr><td>Hooks, B-roll, thumbnails</td><td>Higgsfield</td><td class="num">Your plan</td></tr>
+          <tr><td>Music</td><td>YouTube Audio Library</td><td class="num">Free</td></tr>
+          <tr><td>Captions</td><td>CapCut or YouTube auto captions, corrected</td><td class="num">Free</td></tr>
+          <tr><td>Template store</td><td>Gumroad or Lemon Squeezy</td><td class="num">Free until a sale</td></tr>
+        </table></div>
+        <div class="callout"><strong>Voice decision.</strong> Your own voice builds trust faster and carries no policy risk. An AI voice is allowed and can earn money, but must be disclosed. Pick one now and never switch.</div>
+      </div></li>
+    <li><h3>Prepare a clean recording setup</h3>
+      <div class="step-body"><ol class="plain">
+        <li>A separate browser profile: no bookmarks, no personal tabs.</li>
+        <li>Screen at 1920×1080 or 2560×1440. Browser zoom 125%. Font size 16 or larger.</li>
+        <li>Dark mode everywhere to match the brand.</li>
+        <li>A demo Gmail, demo Google Sheet and demo data. Never show real customer data.</li>
+        <li>A notes file listing every key and email to blur in editing.</li>
+        <li>OBS: one scene, display capture, 30 fps, mic on its own track.</li>
+      </ol></div></li>
+  </ol>
+</section>
+
+<section class="part" id="video">
+  <div class="eyebrow">Part B · every week</div>
+  <h2>Make each video</h2>
+  <p class="part-intro">About 8 hours per long video. Steps 7 to 19, in this order, every time.</p>
+  <ol class="steps" style="--start:6">
+    <li><h3>Find the idea <span class="time">30 min</span></h3>
+      <div class="step-body">
+        <p>All four must be yes:</p>
+        <ol class="plain">
+          <li>A real person does this task by hand every week.</li>
+          <li>People search for it. Check YouTube autocomplete and the views on existing videos.</li>
+          <li>You can build it in under two hours with free-tier tools.</li>
+          <li>The result is visible on screen in one shot.</li>
+        </ol>
+        <p class="muted">Where to find ideas: Reddit r/smallbusiness, r/freelance, r/excel, r/automation; comments on bigger automation channels; your own work tasks.</p>
+      </div></li>
+    <li><h3>Build it for real first <span class="time">1–2 hrs</span></h3>
+      <div class="step-body"><p>Do the whole build once, off camera. Write down every click and every mistake. The mistakes become the “watch out for this” moments, which are what viewers thank you for. Time it. That time goes in the title.</p></div></li>
+    <li><h3>Write the script <span class="time">1 hr</span></h3>
+      <div class="step-body">
+        <p>Claude drafts from your notes. You rewrite it in your own words.</p>
+        <div class="tbl"><table>
+          <tr><th>Time</th><th>Section</th><th>What goes in it</th></tr>
+          <tr><td class="num">0:00–0:20</td><td>Hook</td><td>The finished result running, and what it saves</td></tr>
+          <tr><td class="num">0:20–0:40</td><td>Promise</td><td>What they will have by the end, template is linked</td></tr>
+          <tr><td class="num">0:40–1:30</td><td>The problem</td><td>The manual way, shown quickly</td></tr>
+          <tr><td class="num">1:30–9:00</td><td>The build</td><td>4 to 6 steps, one chapter each, the why as well as the what</td></tr>
+          <tr><td class="num">inside build</td><td>The gotcha</td><td>The mistake you hit and the fix</td></tr>
+          <tr><td class="num">9:00–10:00</td><td>The test</td><td>Run it end to end with fresh demo data</td></tr>
+          <tr><td class="num">10:00–10:30</td><td>Next step</td><td>One extension idea, template link, next video</td></tr>
+        </table></div>
+        <div class="callout money"><strong>Why 8+ minutes.</strong> It unlocks mid-roll ads, which roughly doubles what you earn per view. Never pad to get there. Add a real second use case instead.</div>
+      </div></li>
+    <li><h3>Record the screen <span class="time">1 hr</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>Restart, close everything, turn on Do Not Disturb.</li>
+        <li>Record each script section as its own clip.</li>
+        <li>Move the mouse slowly. Pause one second before and after each click.</li>
+        <li>Redo any section with an unplanned mistake.</li>
+        <li>Record 10 seconds of the final result running, for the hook.</li>
+      </ol></div></li>
+    <li><h3>Record the audio <span class="time">30 min</span></h3>
+      <div class="step-body">
+        <p><strong>Your own voice:</strong> small room with soft furnishing, mic about 15 cm away and slightly to the side. Record section by section, standing up. Clean it with Adobe Podcast Enhance or Resolve. Aim for about −14 LUFS, the YouTube loudness standard.</p>
+        <p><strong>AI voice:</strong> one calm, mid-pace voice, kept forever. Paste the script section by section and regenerate any line that sounds wrong. Say “narration uses an AI voice” in every description.</p>
+      </div></li>
+    <li><h3>Make the Higgsfield pieces <span class="time">30 min</span></h3>
+      <div class="step-body">
+        <div class="tbl"><table>
+          <tr><th>Piece</th><th>Use</th></tr>
+          <tr><td>5-second hook clip</td><td>A cinematic “before” shot, like a desk buried in invoices</td></tr>
+          <tr><td>2–3 concept clips</td><td>Editorial Motion Graphics to explain an idea like “a trigger”</td></tr>
+          <tr><td>Thumbnail</td><td>Thumbnail workflow, locked layout</td></tr>
+        </table></div>
+        <p class="muted">Keep generated footage under 20% of the video. The screen recording is the product.</p>
+      </div></li>
+    <li><h3>Edit <span class="time">2 hrs</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>Lay the voice down first, then fit the screen clips to it.</li>
+        <li>Cut every pause and every page-load wait.</li>
+        <li>Zoom in on each click. The viewer should never squint.</li>
+        <li>Blur every key, email and personal detail on your notes list.</li>
+        <li>Add step labels such as “Step 2 of 5: connect Gmail”.</li>
+        <li>Add captions. Music only under the hook and outro, quietly.</li>
+        <li>Export 1080p or 1440p, 30 fps, high bitrate.</li>
+        <li>Watch the whole export once at normal speed.</li>
+      </ol></div></li>
+    <li><h3>Thumbnail and title <span class="time">30 min</span></h3>
+      <div class="step-body">
+        <p>Thumbnail: messy task left, clean result right, three words like “INVOICES: AUTOPILOT”.</p>
+        <p>Title: the formula, under 60 characters, task word first. Write three, pick the one you would click.</p>
+        <ul class="plain">
+          <li>I automated my invoices in 20 minutes (no code)</li>
+          <li>I put my booking replies on autopilot</li>
+        </ul>
+      </div></li>
+    <li><h3>Upload <span class="time">20 min</span></h3>
+      <div class="step-body">
+        <p>Description template:</p>
+<pre class="tpl">[One sentence: what this builds and what it saves.]
+
+Free template for this build: [link]
+Need this built for your business? [link]
+
+Chapters
+0:00 The result
+0:20 What you'll build
+0:40 The manual way
+1:30 Step 1: ...
+10:00 What to build next
+
+Tools used (some are affiliate links, which
+support the channel at no cost to you):
+- [tool]: [link]
+
+Narration uses an AI voice.   ← delete if your voice
+
+#automation #ai #nocode</pre>
+        <p>Add it to a playlist, add an end screen and a card, and schedule it for Tuesday or Wednesday morning US Eastern, which is evening in India.</p>
+      </div></li>
+    <li><h3>Cut three Shorts <span class="time">30 min</span></h3>
+      <div class="step-body"><ol class="plain">
+        <li>The 20-second hook with the result.</li>
+        <li>The gotcha and its fix.</li>
+        <li>Before and after in 15 seconds.</li>
+      </ol><p class="muted">Vertical, captions on, link the full video. Post the same clips on Instagram Reels and LinkedIn. LinkedIn is where business clients are.</p></div></li>
+    <li><h3>Publish the template <span class="time">20 min</span></h3>
+      <div class="step-body"><p>Export the workflow or sheet, write a one-page setup guide, list it on Gumroad. Free for the first five videos to build an email list, then $19 to $49.</p></div></li>
+    <li><h3>Share it <span class="time">15 min</span></h3>
+      <div class="step-body"><p>Answer the Reddit or forum thread that gave you the idea, linking only where the rules allow. Write one LinkedIn post: the problem, the result, the link.</p></div></li>
+    <li><h3>Review the numbers <span class="time">15 min at 48 hrs and 7 days</span></h3>
+      <div class="step-body">
+        <div class="tbl"><table>
+          <tr><th>Check</th><th>Good</th><th>If it is bad</th></tr>
+          <tr><td>Click-through rate</td><td class="num">above 5%</td><td>Change thumbnail or title and watch again</td></tr>
+          <tr><td>Average view duration</td><td class="num">above 40%</td><td>Find where the graph drops and fix that kind of section next time</td></tr>
+          <tr><td>“How do I…” comments</td><td>any</td><td>That question is your next video</td></tr>
+        </table></div>
+      </div></li>
+  </ol>
+</section>
+
+<section class="part" id="money">
+  <div class="eyebrow">Part C</div>
+  <h2>How the money comes in</h2>
+  <p class="part-intro">Services and templates pay first. Ads arrive later than most people expect.</p>
+  <div class="tbl"><table>
+    <tr><th>When</th><th>Income</th><th>What to do</th></tr>
+    <tr class="money-row"><td>Week 2</td><td>Services</td><td>One-page offer: “I automate one repetitive task for your business.” Start at $300–500 abroad and ₹15K–25K in India for one workflow, then raise prices after three happy clients. Share it on LinkedIn with each video.</td></tr>
+    <tr class="money-row"><td>Month 2</td><td>Templates</td><td>Start charging $19–49 after five free templates.</td></tr>
+    <tr class="money-row"><td>Month 2</td><td>Affiliates</td><td>Join the programmes of tools you really use. Disclose in every description.</td></tr>
+    <tr class="money-row"><td>Month 4+</td><td>YouTube ads</td><td>Partner Program at 1,000 subscribers and 4,000 watch hours.</td></tr>
+    <tr class="money-row"><td>Month 6+</td><td>Sponsors</td><td>At 10K–20K subscribers tool companies reach out. Start around $300 per video.</td></tr>
+  </table></div>
+</section>
+
+<section class="part" id="week">
+  <div class="eyebrow">Part D</div>
+  <h2>Weekly rhythm</h2>
+  <p class="part-intro">About 8 hours a week.</p>
+  <div class="tbl"><table>
+    <tr><th>Day</th><th>Work</th></tr>
+    <tr><td>Saturday</td><td>Pick the idea, build it for real, write notes</td></tr>
+    <tr><td>Sunday</td><td>Script, record screen and voice</td></tr>
+    <tr><td>Monday evening</td><td>Edit, thumbnail</td></tr>
+    <tr><td>Tuesday</td><td>Upload, Shorts, template, share</td></tr>
+    <tr><td>Thursday</td><td>48-hour review, reply to comments, answer one client lead</td></tr>
+  </table></div>
+</section>
+
+<section class="part" id="ideas">
+  <div class="eyebrow">Part E</div>
+  <h2>First ten videos</h2>
+  <p class="part-intro">Video 10 is a collection made from existing footage, the cheapest long video you will make.</p>
+  <div class="tbl"><table>
+    <tr><th>#</th><th>Title</th><th>The build</th></tr>
+    <tr><td class="num">1</td><td>I automated my invoices in 20 minutes (no code)</td><td>Invoice email → AI reads the PDF → row in Google Sheets</td></tr>
+    <tr><td class="num">2</td><td>Customer emails answered while you sleep</td><td>AI drafts replies, you approve with one click</td></tr>
+    <tr><td class="num">3</td><td>Build a WhatsApp booking bot without coding</td><td>Messages → booking sheet → confirmation reply</td></tr>
+    <tr><td class="num">4</td><td>Your meeting notes write themselves</td><td>Recording → summary and action items</td></tr>
+    <tr><td class="num">5</td><td>Turn one video into a week of posts</td><td>Transcript → five LinkedIn and X posts</td></tr>
+    <tr><td class="num">6</td><td>Claude Code built my website while I watched</td><td>Small-business landing page, deployed live</td></tr>
+    <tr><td class="num">7</td><td>Never type a quotation again</td><td>Form → branded PDF quote by email</td></tr>
+    <tr><td class="num">8</td><td>Track every expense from your phone photos</td><td>Receipt photo → categorised expense sheet</td></tr>
+    <tr><td class="num">9</td><td>Your CRM, updated by AI</td><td>New emails → contact records and reminders</td></tr>
+    <tr><td class="num">10</td><td>The 5 automations every small business needs first</td><td>Collection from videos 1–9, 12+ minutes</td></tr>
+  </table></div>
+</section>
+
+<section class="part" id="script">
+  <div class="eyebrow">Part F · ready to record</div>
+  <h2>Video 1 script</h2>
+  <p class="part-intro">“I automated my invoices in 20 minutes (no code).” An invoice email arrives, AI reads the PDF, and the vendor, date, amount and due date land in a Google Sheet. Use n8n or Make, whichever you are faster in. Target 9 to 10 minutes. Swap in the exact tool names you used before recording.</p>
+  <div class="script">
+    <div class="cue">An inbox with three new invoice emails. A Google Sheet beside it. Rows appear one by one.</div>
+    <p>Three invoices just arrived. I didn't open any of them. They're already in my sheet, with the vendor, the amount, and the due date. This used to take me an hour every Friday. Today you're going to build the same thing, and it takes about twenty minutes.</p>
+    <div class="cue">The finished workflow, four boxes connected.</div>
+    <p>By the end of this video you'll have this. Four steps, no code. The template is free, the link is in the description, but build it with me once so you know how to change it.</p>
+    <div class="cue">Opening a PDF by hand, copying the vendor, switching tabs, pasting.</div>
+    <p>Here's the manual way. Open the email. Open the PDF. Find the vendor. Copy. Switch tabs. Paste. Find the amount. Copy. Switch. Paste. Multiply that by forty invoices a month. And every few weeks, you paste a number into the wrong row.</p>
+    <div class="label">Step 1 of 4 · Label the emails</div>
+    <p>Step one. We need Gmail to tell us which emails are invoices. Create a filter. Anything with “invoice” in the subject, or a PDF from a known vendor, gets the label Invoices. This is the only rule in the whole system, so make it a little broad. It's easier to ignore an extra email than to miss a real invoice.</p>
+    <div class="label">Step 2 of 4 · Start the workflow</div>
+    <p>Step two. In the automation tool, add a Gmail trigger. Choose the Invoices label. Set it to check every five minutes. Now send yourself a test invoice and click “fetch test event”. There it is. The email, and the PDF attached.</p>
+    <div class="label">Step 3 of 4 · Let AI read the PDF</div>
+    <p>Step three is the clever part. First, turn the PDF into text with the extract-from-file step. Then add an AI step. Here's the prompt, word for word, and it's in the template too.</p>
+    <div class="cue">The prompt in large text.</div>
+    <p><em>“Read this invoice. Return only JSON with four fields: vendor, invoice_date, amount, due_date. Dates as year-month-day. Amount as a number with no currency symbol. If a field is missing, return null.”</em></p>
+    <p>Two things matter in that prompt. “Return only JSON” stops the AI from chatting. And “if a field is missing, return null” stops it from inventing a due date that isn't there. Without that line, it will guess. Ask me how I know.</p>
+    <div class="cue">Test run output showing the four fields.</div>
+    <p>Run it. Vendor, date, amount, due date. Clean.</p>
+    <div class="label">The gotcha</div>
+    <p>Now the mistake that cost me half an hour. Some invoices are scanned images, not real PDFs, so there's no text to extract and the AI gets nothing. The fix: add an “if” check. If the extracted text is empty, send it to an OCR step first. Two minutes to add, and it saves you from silent blank rows.</p>
+    <div class="label">Step 4 of 4 · Write to the sheet</div>
+    <p>Step four. Add a Google Sheets step, choose append row, and map the four fields to your four columns. Add a fifth column with a link back to the email, so you can always check the original.</p>
+    <div class="cue">Three fresh test invoices sent, one scanned. Rows appear.</div>
+    <p>Let's test it properly. Three new invoices, three different vendors, one scanned. Wait for it. One. Two. Three. All four fields, all three rows, including the scanned one.</p>
+    <div class="cue">Workflow switched to active.</div>
+    <p>Switch it on, and you're done. From now on, invoices file themselves.</p>
+    <p>If you want to go one step further, add a daily check that emails you every invoice due in the next three days. That's the next video.</p>
+    <p>The template for this build is in the description, free. And if you'd rather have this set up for your business, there's a link for that too. See you in the next one.</p>
+  </div>
+</section>
+
+<div class="next" id="now">
+  <div class="eyebrow">Do this now</div>
+  <h2>Your next steps</h2>
+  <ol>
+    <li>Buy deskonautopilot.com at Cloudflare, about ₹1,000.</li>
+    <li>Claim @deskonautopilot on YouTube, Instagram, X, LinkedIn and Gumroad.</li>
+    <li>Install OBS and set up the clean recording profile.</li>
+    <li>Build the invoice automation once, off camera, and note every mistake.</li>
+  </ol>
+  <p class="muted" style="margin-top:12px">Paused, not cancelled: the history channel “Tales Before Time”. Everything for it is saved in the project files.</p>
+</div>
+</div>
