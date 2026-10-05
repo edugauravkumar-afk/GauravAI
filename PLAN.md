@@ -5,12 +5,13 @@
 | # | Channel | Handle / domain | Format | Made by | Your time / week | Launch |
 |---|---|---|---|---|---|---|
 | 1 | Desk on Autopilot | @deskonautopilot, deskonautopilot.com | 8-12 min screen-recorded AI automation tutorials for small businesses | You build and record, Claude guides | ~8 hrs | now |
-| 2 | Fortune and Fall | @fortuneandfall, fortuneandfall.com | 10-15 min money-and-power history documentaries | Claude scripts, Higgsfield History long-form, you approve | ~1-1.5 hrs | month 2 |
-| 3 | Tales Before Time | @talesbeforetime, no domain needed (.in free) | 2-3 min myth stories plus Shorts | Claude scripts, Higgsfield Fairy Tale & Myth, you approve | ~45 min | month 3 |
+| 2 | Gold and Ruin | @goldandruin, goldandruin.com | 10-15 min money-and-power history documentaries | Claude scripts, Higgsfield History long-form, you approve | ~1-1.5 hrs | month 2 |
+| 3 | Twist of Myth | @twistofmyth, twistofmyth.com optional | 2-3 min myth stories plus Shorts | Claude scripts, Higgsfield Fairy Tale & Myth, you approve | ~45 min | month 3 |
 
 - Hindi: no separate channel. Add a Hindi audio track to the same video using YouTube's multi-language audio / auto-dubbing.
-- History renamed from Tales Before Time to Fortune and Fall: talesbeforetime.com is taken and the name fits myths better. Tales Before Time becomes the myth channel.
-- Closest competitor for channel 2: "Lost Fortune Files". Similar name to avoid confusing: "Fates and Fortunes".
+- Names checked 5 Oct (see `docs/channel-name-check.md`): "Fortune and Fall" dropped because "Fates and Fortunes" makes the same videos; "Tales Before Time" dropped because two "Tales Beyond Time" channels make AI history stories and the .com is taken.
+- Channel 2 competitors to study: Fates and Fortunes, Lost Fortune Files, Empire Ledger.
+- Channel 3 uses the myth kit in `docs/storybook-channel-launch-kit.md` (written under the old name Tales Before Time).
 - Monthly tools: n8n $20-24, Higgsfield $47-129, domains ~₹170. About ₹6K-13K total.
 - If time runs short, pause the newest channel first, never the tech channel.
 
