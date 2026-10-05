@@ -1,19 +1,27 @@
 # Master Plan
 
-## Current decision (4 October 2026): faceless tech channel first
+## Current decision (5 October 2026): three channels, launched a month apart
 
-The primary channel is a faceless AI-automation tutorial channel named
-"Desk on Autopilot" (deskonautopilot.com, @deskonautopilot). Research in
-`docs/name-audience-domain-research.md`. Screen recordings plus voice, no face, Higgsfield for hooks, B-roll
-and thumbnails. Money starts with services and templates in month 1 and 2, ads from
-month 4. The full step-by-step process is in `docs/tech-channel-playbook.md`.
+| # | Channel | Handle / domain | Format | Made by | Your time / week | Launch |
+|---|---|---|---|---|---|---|
+| 1 | Desk on Autopilot | @deskonautopilot, deskonautopilot.com | 8-12 min screen-recorded AI automation tutorials for small businesses | You build and record, Claude guides | ~8 hrs | now |
+| 2 | Fortune and Fall | @fortuneandfall, fortuneandfall.com | 10-15 min money-and-power history documentaries | Claude scripts, Higgsfield History long-form, you approve | ~1-1.5 hrs | month 2 |
+| 3 | Tales Before Time | @talesbeforetime, no domain needed (.in free) | 2-3 min myth stories plus Shorts | Claude scripts, Higgsfield Fairy Tale & Myth, you approve | ~45 min | month 3 |
 
-The history and myth channel below (Tales Before Time) is paused. Restart it once the
-tech channel and its services earn steadily. Everything below is kept for that.
+- Hindi: no separate channel. Add a Hindi audio track to the same video using YouTube's multi-language audio / auto-dubbing.
+- History renamed from Tales Before Time to Fortune and Fall: talesbeforetime.com is taken and the name fits myths better. Tales Before Time becomes the myth channel.
+- Closest competitor for channel 2: "Lost Fortune Files". Similar name to avoid confusing: "Fates and Fortunes".
+- Monthly tools: n8n $20-24, Higgsfield $47-129, domains ~₹170. About ₹6K-13K total.
+- If time runs short, pause the newest channel first, never the tech channel.
+
+Readable version: `docs/channel-playbook.html` (published as a private web page).
+Channel 1 step-by-step: `docs/tech-channel-playbook.md`, `video-01-invoices/BUILD-GUIDE.md`.
+Channel 2 topics and money research: money-first section below, `docs/competitors-and-profit-estimate.md`.
+Channel 3 kit (identity, 50 stories, 3 scripts): `docs/storybook-channel-launch-kit.md`.
 
 ---
 
-# Paused plan: Tales Before Time
+# Background: history and myth planning (now channels 2 and 3)
 
 One page to run the project from. Detailed material lives in `docs/`:
 
