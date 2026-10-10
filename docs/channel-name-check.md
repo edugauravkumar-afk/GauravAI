@@ -4,9 +4,9 @@
 
 | Channel | Name | Handle | Domains (.com .in .co .io .net .tv) | Conflicts found |
 |---|---|---|---|---|
-| 1 Tech | Desk on Autopilot | @deskonautopilot | all unregistered | none; "Autopilot" is a software trademark word (e.g. Venzee, Samsa) but not used as a channel name |
+| 1 Tech | Desk on Autopilot | @DeskonAutopilot (claimed 10 Oct) | all unregistered | none; "Autopilot" is a software trademark word (e.g. Venzee, Samsa) but not used as a channel name |
 | 2 History | Gold and Ruin | @TheGoldandRuin (claimed 10 Oct; @GoldandRuin was taken by an inactive account) | all unregistered | none |
-| 3 Myths | Twist of Myth | @twistofmyth | all unregistered | none; "A Twist in the Myth" is a 2006 music album |
+| 3 Myths | Twist of Myth | @TwistofMyth (claimed 10 Oct) | all unregistered | none; "A Twist in the Myth" is a 2006 music album |
 
 ## Dropped
 

@@ -2,11 +2,13 @@
 
 ## Current decision (5 October 2026): three channels, launched a month apart
 
+All three YouTube channels created on 10 October 2026 under one channel Google account: @DeskonAutopilot, @TheGoldandRuin, @TwistofMyth.
+
 | # | Channel | Handle / domain | Format | Made by | Your time / week | Launch |
 |---|---|---|---|---|---|---|
-| 1 | Desk on Autopilot | @deskonautopilot, deskonautopilot.com | 8-12 min screen-recorded AI automation tutorials for small businesses | You build and record, Claude guides | ~8 hrs | now |
+| 1 | Desk on Autopilot | @DeskonAutopilot, deskonautopilot.com | 8-12 min screen-recorded AI automation tutorials for small businesses | You build and record, Claude guides | ~8 hrs | now |
 | 2 | Gold and Ruin | @TheGoldandRuin, goldandruin.com | 10-15 min money-and-power history documentaries | Claude scripts, Higgsfield History long-form, you approve | ~1-1.5 hrs | month 2 |
-| 3 | Twist of Myth | @twistofmyth, twistofmyth.com optional | 2-3 min myth stories plus Shorts | Claude scripts, Higgsfield Fairy Tale & Myth, you approve | ~45 min | month 3 |
+| 3 | Twist of Myth | @TwistofMyth, twistofmyth.com optional | 2-3 min myth stories plus Shorts | Claude scripts, Higgsfield Fairy Tale & Myth, you approve | ~45 min | month 3 |
 
 - Hindi: no separate channel. Add a Hindi audio track to the same video using YouTube's multi-language audio / auto-dubbing.
 - Names checked 5 Oct (see `docs/channel-name-check.md`): "Fortune and Fall" dropped because "Fates and Fortunes" makes the same videos; "Tales Before Time" dropped because two "Tales Beyond Time" channels make AI history stories and the .com is taken.
