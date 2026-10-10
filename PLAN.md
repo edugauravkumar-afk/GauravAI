@@ -37,6 +37,14 @@ Owner key: **You** = Gaurav does it. **Claude** = done in this session on reques
 
 ---
 
+## Spending rule (10 October 2026): profit first
+
+1. Spend nothing on Higgsfield until the tech channel has 4 videos live and the services offer is posted. Target: end of week 4.
+2. Month 1 cash cost target: domain only (~₹1,000). n8n on the free 14-day trial; Gemini free tier; OBS free. If n8n is still needed after the trial, self-host it free on the Mac with Docker before paying $24/month.
+3. Higgsfield Plus monthly ($49) starts in month 2 only if (a) 4 tech videos are out and (b) the invoice template or a first client has produced any income. Measure credits per documentary on documentary 1; cancel if one documentary costs more than ~250 credits.
+4. Documentary 1 script is written and waiting (gold-and-ruin/). Nothing is lost by waiting.
+5. Break-even for Plus at $4 RPM is ~12,000 monetised views a month, which the history channel cannot reach before month 4-5. So every Higgsfield month before monetisation is an investment of about $49; cap that at 3 months ($150) before reviewing.
+
 ## Money-first revision (4 October 2026)
 
 Goal restated: earn money, not just grow. The competitor data changes the product mix.
