@@ -1,7 +1,7 @@
 import math, random, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-F="/tmp/claude-0/-home-user-GauravAI/9432ca85-7fae-5133-a114-f8fb25255154/scratchpad/fonts/"
-OUT="/home/user/GauravAI/channel-assets/"
+F="fonts/"  # folder holding the downloaded .ttf files
+OUT="channel-assets/"
 def font(name,size,wght=None):
     f=ImageFont.truetype(F+name,size)
     if wght is not None:
@@ -122,5 +122,5 @@ for ch in ["desk-on-autopilot","gold-and-ruin","twist-of-myth"]:
     d=ImageDraw.Draw(prev); 
     y+=490
 prev=prev.crop((0,0,1600,y))
-prev.save("/tmp/claude-0/-home-user-GauravAI/9432ca85-7fae-5133-a114-f8fb25255154/scratchpad/preview.png")
+prev.save("preview.png")
 print("done")
