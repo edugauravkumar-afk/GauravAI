@@ -4,6 +4,8 @@
 
 All three YouTube channels created on 10 October 2026 under one channel Google account: @DeskonAutopilot, @TheGoldandRuin, @TwistofMyth.
 
+Setup done 10 October: deskonautopilot.com bought at Hostinger (~₹1,081/yr, auto-renew on, expires 2027-10-10), DNS on Cloudflare, hello@deskonautopilot.com receives via Cloudflare Email Routing and sends via Gmail SMTP with an app password. 2-Step Verification on. Total spend so far: about ₹1,081.
+
 | # | Channel | Handle / domain | Format | Made by | Your time / week | Launch |
 |---|---|---|---|---|---|---|
 | 1 | Desk on Autopilot | @DeskonAutopilot, deskonautopilot.com | 8-12 min screen-recorded AI automation tutorials for small businesses | You build and record, Claude guides | ~8 hrs | now |
