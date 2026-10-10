@@ -70,6 +70,17 @@ pre.tpl{font-family:var(--mono);font-size:13.5px;line-height:1.55;background:var
 .ok{color:var(--money);font-weight:600}
 .no{color:var(--cue);font-weight:600}
 .stack{display:grid;gap:12px}
+.cards{display:grid;gap:18px;margin-top:22px}
+.chan{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0}
+.chan-top{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.chan-top h3{font-family:var(--display);font-weight:800;font-size:22px;margin:0}
+.pfp{width:96px;height:96px;border-radius:50%;flex:none}
+.banner{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+.copy{display:grid;gap:6px;min-width:0}
+.copy-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.copy textarea{width:100%;font-family:var(--body);font-size:15px;line-height:1.5;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical}
+.copy-btn{font-family:var(--body);font-weight:600;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent);cursor:pointer}
+.copy-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 code{font-family:var(--mono);font-size:.86em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 5px;overflow-wrap:anywhere}
 .node{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;min-width:0}
 .node .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
@@ -90,9 +101,89 @@ a{color:var(--accent)}
 </header>
 
 <nav class="chips" aria-label="Sections">
-  <a href="#channels">Three channels</a><a href="#research">Channel 1 research</a><a href="#setup">Setup</a><a href="#video">Every video</a><a href="#money">Money</a><a href="#week">Weekly rhythm</a><a href="#ideas">First 10 videos</a><a href="#guide">Who guides you</a><a href="#build">Video 1 build</a><a href="#script">Video 1 script</a><a href="#now">Do now</a>
+  <a href="#create">Create channels</a><a href="#channels">Three channels</a><a href="#research">Channel 1 research</a><a href="#setup">Setup</a><a href="#video">Every video</a><a href="#money">Money</a><a href="#week">Weekly rhythm</a><a href="#ideas">First 10 videos</a><a href="#guide">Who guides you</a><a href="#build">Video 1 build</a><a href="#script">Video 1 script</a><a href="#now">Do now</a>
 </nav>
 
+
+<section class="part" id="create">
+  <div class="eyebrow">Do this first · about 15 minutes per channel</div>
+  <h2>Create the channels</h2>
+  <p class="part-intro">I can't sign in to your Google account, so you tap the buttons and I've prepared everything else. The pictures and text below are ready to use. YouTube's channel setup screens work best in a browser, so use your tablet's browser rather than the YouTube app.</p>
+
+  <h3 class="sub">Save the pictures first</h3>
+  <p>Press and hold each picture below, then choose Save image. If that doesn't work on your tablet, open your GitHub project on the branch <code>claude/faceless-youtube-strategy-sfms0j</code> and look in the <code>channel-assets</code> folder.</p>
+
+  <h3 class="sub">Steps, repeat for each channel</h3>
+  <ol class="plain">
+    <li>Open <code>youtube.com/channel_switcher</code> in your browser, signed in to the channel Google account. Tap <strong>Create a channel</strong>, paste the channel name, then Create.</li>
+    <li>Open <code>studio.youtube.com</code>. Check that the channel picture at the top right is the new channel.</li>
+    <li><strong>Customisation → Basic info:</strong> paste the handle and wait for the green tick. Paste the description. Under Links, add the website. Under Contact info, add your email. Publish.</li>
+    <li><strong>Customisation → Branding:</strong> upload the profile picture and the banner. Publish.</li>
+    <li><strong>Settings → Channel → Basic info:</strong> set Country to India and paste the keywords.</li>
+    <li><strong>Settings → Channel → Advanced settings:</strong> set the audience to <strong>No, not made for kids</strong>. This matters most for Twist of Myth, because the storybook look could be mistaken for children's content.</li>
+    <li><strong>Settings → Upload defaults:</strong> set the category shown on the card, language English.</li>
+    <li>Do this once for your account: open <code>youtube.com/verify</code> and verify your phone number. This unlocks custom thumbnails and long videos.</li>
+    <li>Instagram and TikTok: create an account with the same handle and paste the bio.</li>
+  </ol>
+  <div class="callout" style="margin-top:12px"><strong>If a handle is taken,</strong> try the backups: @deskonautopilothq, @goldandruinhistory, @twistofmyths. Then tell me which one you used so I can update the plan and artwork.</div>
+  <div class="cards">
+  <div class="chan">
+    <div class="chan-top">
+      <img class="pfp" src="assets/desk-on-autopilot/profile-800.png" alt="Desk on Autopilot profile picture" width="120" height="120">
+      <div><h3>Desk on Autopilot</h3><p class="muted">@deskonautopilot · category Science & Technology · made for kids: No</p></div>
+    </div>
+    <img class="banner" src="assets/desk-on-autopilot/banner-2560x1440.png" alt="Desk on Autopilot banner" loading="lazy">
+    <div class="copy"><div class="copy-head"><span class="label">Channel name</span><button type="button" class="copy-btn" data-target="desk-on-autopilot-name">Copy</button></div><textarea id="desk-on-autopilot-name" rows="1" readonly>Desk on Autopilot</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Handle</span><button type="button" class="copy-btn" data-target="desk-on-autopilot-handle">Copy</button></div><textarea id="desk-on-autopilot-handle" rows="1" readonly>deskonautopilot</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Description</span><button type="button" class="copy-btn" data-target="desk-on-autopilot-about">Copy</button></div><textarea id="desk-on-autopilot-about" rows="9" readonly>Every week, one real task automated with AI, start to finish, on screen. Invoices, emails, bookings, reports: the admin that eats your week, put on autopilot with tools like n8n, Google Sheets and AI. No hype and no coding needed.
+
+Every build comes with a template in the description, so you can copy it in minutes.
+
+New videos every Tuesday.
+Want a workflow built for your business? Email hello@deskonautopilot.com
+
+Narration may use an AI voice. This is disclosed in each video.</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Channel keywords</span><button type="button" class="copy-btn" data-target="desk-on-autopilot-kw">Copy</button></div><textarea id="desk-on-autopilot-kw" rows="3" readonly>ai automation, n8n, no code automation, small business automation, workflow automation, google sheets automation, ai for small business, automate invoices, business productivity, ai tools</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Instagram and TikTok bio</span><button type="button" class="copy-btn" data-target="desk-on-autopilot-ig">Copy</button></div><textarea id="desk-on-autopilot-ig" rows="2" readonly>One real task automated with AI every week. A template for every build. New video every Tuesday.</textarea></div>
+  </div>
+  <div class="chan">
+    <div class="chan-top">
+      <img class="pfp" src="assets/gold-and-ruin/profile-800.png" alt="Gold and Ruin profile picture" width="120" height="120">
+      <div><h3>Gold and Ruin</h3><p class="muted">@goldandruin · category Education · made for kids: No</p></div>
+    </div>
+    <img class="banner" src="assets/gold-and-ruin/banner-2560x1440.png" alt="Gold and Ruin banner" loading="lazy">
+    <div class="copy"><div class="copy-head"><span class="label">Channel name</span><button type="button" class="copy-btn" data-target="gold-and-ruin-name">Copy</button></div><textarea id="gold-and-ruin-name" rows="1" readonly>Gold and Ruin</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Handle</span><button type="button" class="copy-btn" data-target="gold-and-ruin-handle">Copy</button></div><textarea id="gold-and-ruin-handle" rows="1" readonly>goldandruin</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Description</span><button type="button" class="copy-btn" data-target="gold-and-ruin-about">Copy</button></div><textarea id="gold-and-ruin-about" rows="9" readonly>How fortunes were made, and how empires lost them.
+
+Gold and Ruin tells the true stories behind history&#x27;s greatest fortunes and most spectacular collapses: trading companies that conquered nations, kings richer than countries, bubbles, crashes and con artists.
+
+Every documentary is researched from historical sources, listed in the description, and checked by a person before it is published. Animation and narration are made with AI tools, disclosed on every video.
+
+New documentary every week.</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Channel keywords</span><button type="button" class="copy-btn" data-target="gold-and-ruin-kw">Copy</button></div><textarea id="gold-and-ruin-kw" rows="3" readonly>history documentary, economic history, history of money, rise and fall, empires, financial history, history explained, east india company, animated history, world history</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Instagram and TikTok bio</span><button type="button" class="copy-btn" data-target="gold-and-ruin-ig">Copy</button></div><textarea id="gold-and-ruin-ig" rows="2" readonly>How fortunes were made, and how empires lost them. A new history documentary every week.</textarea></div>
+  </div>
+  <div class="chan">
+    <div class="chan-top">
+      <img class="pfp" src="assets/twist-of-myth/profile-800.png" alt="Twist of Myth profile picture" width="120" height="120">
+      <div><h3>Twist of Myth</h3><p class="muted">@twistofmyth · category Film & Animation · made for kids: No</p></div>
+    </div>
+    <img class="banner" src="assets/twist-of-myth/banner-2560x1440.png" alt="Twist of Myth banner" loading="lazy">
+    <div class="copy"><div class="copy-head"><span class="label">Channel name</span><button type="button" class="copy-btn" data-target="twist-of-myth-name">Copy</button></div><textarea id="twist-of-myth-name" rows="1" readonly>Twist of Myth</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Handle</span><button type="button" class="copy-btn" data-target="twist-of-myth-handle">Copy</button></div><textarea id="twist-of-myth-handle" rows="1" readonly>twistofmyth</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Description</span><button type="button" class="copy-btn" data-target="twist-of-myth-about">Copy</button></div><textarea id="twist-of-myth-about" rows="9" readonly>Old myths and legends, retold with a twist.
+
+Short animated stories from the Mahabharata, the Ramayana, the Puranas, the Panchatantra and folk tales, and from Greek, Norse, Egyptian and Japanese mythology. Each tale takes a few minutes and ends on the line that kept people telling it for thousands of years.
+
+Every script names its source. Animation and narration are made with AI tools, disclosed on every video.
+
+New stories twice a week.</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Channel keywords</span><button type="button" class="copy-btn" data-target="twist-of-myth-kw">Copy</button></div><textarea id="twist-of-myth-kw" rows="3" readonly>mythology, indian mythology, mahabharata stories, ramayana, hindu mythology, greek mythology, norse mythology, folklore, animated stories, legends</textarea></div>
+    <div class="copy"><div class="copy-head"><span class="label">Instagram and TikTok bio</span><button type="button" class="copy-btn" data-target="twist-of-myth-ig">Copy</button></div><textarea id="twist-of-myth-ig" rows="2" readonly>Old myths and legends, retold with a twist. Two new animated tales every week.</textarea></div>
+  </div>
+  </div>
+</section>
 
 <section class="part" id="channels">
   <div class="eyebrow">The portfolio</div>
@@ -743,3 +834,16 @@ Narration uses an AI voice.   ← delete if your voice
   <p class="muted" style="margin-top:12px">Also today: claim @goldandruin and @twistofmyth on YouTube, even though they launch in months 2 and 3.</p>
 </div>
 </div>
+
+<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('.copy-btn'); if (!b) return;
+  var t = document.getElementById(b.dataset.target); if (!t) return;
+  function done(ok){ b.textContent = ok ? 'Copied' : 'Text selected'; setTimeout(function(){ b.textContent = 'Copy'; }, 1800); }
+  function fallback(){ t.focus(); t.select(); t.setSelectionRange(0, t.value.length); done(false); }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t.value).then(function(){ done(true); }, fallback); }
+    else fallback();
+  } catch (err) { fallback(); }
+});
+</script>
