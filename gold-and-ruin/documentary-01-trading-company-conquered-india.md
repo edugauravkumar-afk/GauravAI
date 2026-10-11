@@ -145,8 +145,8 @@ A third.
 
 [SCENE: London, the same boardroom, a dividend announcement being read aloud]
 
-That same year, in London, the Company paid its shareholders a dividend of twelve and a half
-percent.
+And within a year, in London, the Company's shareholders voted themselves a dividend of
+twelve and a half percent. The highest the Company had ever paid.
 
 ### CHAPTER FOUR: THE CRASH
 
@@ -232,7 +232,7 @@ gold that he crashed the price of gold itself.
 | Clive's reward | "around £234,000" | Encyclopedia.com (1773 inquiry figure), Brewminate | one source gives 234 lakh rupees instead; script follows the parliamentary figure |
 | Diwani | August 1765; 26 lakh rupees a year | Wikipedia, GKToday | date given as 12 or 16 August |
 | Famine deaths | "around a third"; "one million to ten" | Wikipedia (Great Bengal famine of 1770), academic PDF | Hastings's one-third estimate is well attested |
-| 12.5% dividend in 1770 | stated | not verified in this research pass | VERIFY before publishing or cut the line |
+| 12.5% dividend | "within a year" of the famine; "the highest it had ever paid" | Indian Link (Dalrymple-based commentary), The Anarchy reader notes, Wikipedia (British credit crisis of 1772-73) | Verified 11 Oct 2026: shareholders raised the dividend from 10% to an unprecedented 12.5% while Bengal starved. Exact vote date not found, so the script says "within a year" rather than naming 1770. |
 | Fordyce and the 1772 crash | June 1772 | Wikipedia (Neale, James, Fordyce and Downe), Reference.org | consistent |
 | Share price 226 to 139 | May 1772 to May 1773 | finaeon.com | single source, worded cautiously |
 | Loan size | "well over a million pounds" | £1.4m to £1.5m in secondary sources | hedged |

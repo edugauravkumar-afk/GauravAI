@@ -1,5 +1,7 @@
 # Launch Kit: Myth & History Storybook Channel
 
+> **Update, 11 October 2026:** the channel was renamed **Twist of Myth** (@twistofmyth) after the name check found two "Tales Beyond Time" channels. The history half of this plan became its own channel, **Gold and Ruin**. The Hindi sister channel is dropped in favour of a Hindi audio track on the same videos. The stories, scripts and templates below are unchanged and still current.
+
 Decision made on 3 October 2026: the first channel is a faceless myth-and-history
 storybook channel, produced with Higgsfield's Faceless Studio (Fairy Tale & Myth type
 for legends, History type for real events), English first, Hindi dub as a sister channel.
