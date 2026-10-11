@@ -81,7 +81,7 @@ Money timeline (base case): months 1-3 zero; months 4-6 $300-1,500 a month from 
 
 | # | Task | Owner | Done when |
 |---|---|---|---|
-| 0.1 | Check and claim @talesbeforetime on YouTube, Instagram, TikTok. Fallbacks in the launch kit. | You | Handles secured |
+| 0.1 | Check and claim @talesbeforetime on YouTube, Instagram. Fallbacks in the launch kit. | You | Handles secured |
 | 0.2 | Check and claim @kathaghar for the Hindi channel | You | Handle secured |
 | 0.3 | Buy talesbeforetime.com (or .in) | You | Domain owned |
 | 0.4 | Choose a Higgsfield plan. Account is free with 0 credits today. Pick the plan that covers roughly 10 two-minute videos a month plus thumbnails and dubs, and confirm paid output has no watermark. | You | Credits visible in the account |

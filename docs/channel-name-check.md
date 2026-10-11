@@ -30,7 +30,7 @@
 ## Method and limits
 
 - Domains: NS lookups through the public DNS. NXDOMAIN from the registry means the domain is not registered.
-- Platforms: YouTube, Instagram, X, TikTok, LinkedIn, Gumroad, Reddit, USPTO, WIPO and IP India all blocked automated access from this environment. Platform and brand checks used web searches (exact name, handle, site-restricted searches). A brand-new or empty account may not appear in search, so claiming the handle is the final check.
+- Platforms: YouTube, Instagram, X, LinkedIn, Gumroad, Reddit, USPTO, WIPO and IP India all blocked automated access from this environment. Platform and brand checks used web searches (exact name, handle, site-restricted searches). A brand-new or empty account may not appear in search, so claiming the handle is the final check.
 
 ## Competitors found in the channel 2 lane
 
