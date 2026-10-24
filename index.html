@@ -124,7 +124,7 @@ let DS,root,months,closed,sizeMode="s",mode="tree",sim=null,sel=null;
 
 /* ---------- parsing the RCM export ---------- */
 function msg(t){const m=document.getElementById("msg");m.textContent=t;m.hidden=!t;}
-function parseSheet(ws){
+function parseSheet(ws,fname){
   const rows=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:null});
   const hi=rows.findIndex(r=>r&&r.some(c=>String(c||"").replace(/\s|\./g,"").toLowerCase()==="abid"));
   if(hi<0)throw new Error("Could not find the 'A.B. Id' header row. Upload the smart report exactly as exported from the RCM portal.");
@@ -135,7 +135,7 @@ function parseSheet(ws){
   const start=(cDW>=0?cDW:Math.max(cPN,cProp))+1,end=cTot>0?cTot:H.length;
   const mcols=[];for(let i=start;i<end;i++)if(H[i])mcols.push(i);
   if(!mcols.length)throw new Error("No month columns found between Display Wall and Total.");
-  const out=[];
+  let out=[];
   for(const r of rows.slice(hi+1)){
     const id=+r[cId];if(!id)continue;
     let j="";const dv=r[cDate];
@@ -146,15 +146,25 @@ function parseSheet(ws){
       pn:String(r[cPN]||"").trim(),dw:String(r[cDW]||"").trim().toUpperCase()==="Y",c:String(r[cCity]||"").trim(),j,m:mcols.map(i=>+r[i]||0)});
   }
   const ids=new Set(out.map(r=>r.id));
-  const cnt={};out.forEach(r=>{if(!ids.has(r.p))cnt[r.p]=(cnt[r.p]||0)+1;});
-  const rootId=+Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0];
-  const rootName=(out.find(r=>r.p===rootId)||{}).pn||"You";
-  return {root:rootId,rootName,months:mcols.map(i=>H[i]),rows:out};
+  // Root: the ID in the file name (Report_smart_report_oF_ID_<id>) when present, else the most common proposer not in the file.
+  let rootId=0,rootName="You";
+  const fm=/ID[_\s-]*(\d{6,})/i.exec(fname||"");
+  if(fm)rootId=+fm[1];
+  if(!rootId||(!ids.has(rootId)&&!out.some(r=>r.p===rootId))){
+    const cnt={};out.forEach(r=>{if(!ids.has(r.p))cnt[r.p]=(cnt[r.p]||0)+1;});
+    rootId=+Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0];
+  }
+  const self=out.find(r=>r.id===rootId);
+  if(self){rootName=self.n;out=out.filter(r=>r.id!==rootId);}
+  else rootName=(out.find(r=>r.p===rootId)||{}).pn||"You";
+  // Members whose proposer is outside the file are placed directly under the root.
+  out.forEach(r=>{if(!ids.has(r.p))r.p=rootId;});
+  return {root:rootId,rootName,rootM:self?self.m:null,months:mcols.map(i=>H[i]),rows:out};
 }
 document.getElementById("file").addEventListener("change",e=>{
   const f=e.target.files[0];if(!f)return;
   const rd=new FileReader();
-  rd.onload=ev=>{try{const wb=XLSX.read(ev.target.result,{type:"array",cellDates:true});const ds=parseSheet(wb.Sheets[wb.SheetNames[0]]);load(ds,f.name);msg("");try{localStorage.setItem("rcmmap",JSON.stringify({ds,label:f.name,at:new Date().toLocaleDateString("en-IN")}));}catch(e){}}
+  rd.onload=ev=>{try{const wb=XLSX.read(ev.target.result,{type:"array",cellDates:true});const ds=parseSheet(wb.Sheets[wb.SheetNames[0]],f.name);load(ds,f.name);msg("");try{localStorage.setItem("rcmmap",JSON.stringify({ds,label:f.name,at:new Date().toLocaleDateString("en-IN")}));}catch(e){}}
     catch(err){msg("Could not read that file: "+err.message);}};
   rd.readAsArrayBuffer(f);
 });
@@ -175,7 +185,7 @@ function load(ds,label){
   const orphans=[];
   ds.rows.forEach(r=>{if(r.id===ds.root)return;const p=by[r.p];if(p)p.k.push(by[r.id]);else if(r.p!==ds.root)orphans.push(by[r.id]);});
   const top=ds.rows.filter(r=>r.p===ds.root).map(r=>by[r.id]).concat(orphans);
-  const R={id:ds.root,n:ds.rootName+" (You)",dw:false,c:"",j:"",m:months.map(()=>0),k:top,isRoot:true};
+  const R={id:ds.root,n:ds.rootName,dw:false,c:"",j:"",m:ds.rootM||months.map(()=>0),k:top,isRoot:true};
   root=d3.hierarchy(R,d=>d.k);
   const ms=document.getElementById("month");ms.innerHTML=months.map((m,i)=>`<option value="${i}">${m}</option>`).join("");
   // default closed month: last column unless it looks partial (< 60% of the previous month)
@@ -252,8 +262,8 @@ function show(d){
   const kids=(d._k||[]).slice().sort((a,b)=>b.g-a.g);
   const monthsLbl=months.map((x,i)=>`<span title="${x}">${x.slice(0,3)}${i>closed?"*":""}</span>`).join("");
   if(d.data.isRoot){side.innerHTML=`<h2>${DS.rootName}</h2><div class="sub">${kids.length} direct legs · ${months[closed]}</div>
-    <dl><dt>B-side BV</dt><dd>${fmt(d.g)}</dd><dt>Target (4.5%)</dt><dd>1,70,000</dd><dt>Gap</dt><dd>${fmt(170000-d.g)}</dd><dt>3% floor</dt><dd>1,15,000</dd></dl>
-    <div class="bars">${months.map((_,i)=>{const t=d3.sum(DS.rows,r=>r.m[i]);return `<div class="${i>closed?"mtd":""}" style="height:${Math.max(2,100*t/d3.max(months,(__,j)=>d3.sum(DS.rows,r=>r.m[j])))}%" title="${months[i]} ${fmt(t)}"></div>`;}).join("")}</div>
+    <dl><dt>Group BV</dt><dd>${fmt(d.g)}</dd>${(()=>{const T=[[115000,"3%"],[170000,"4.5%"],[260000,"6%"],[350000,"8%"]];const nx=T.find(t=>t[0]>d.g);const cur=[...T].reverse().find(t=>t[0]<=d.g);return `<dt>Royalty slab reached</dt><dd>${cur?cur[1]+" ("+fmt(cur[0])+")":"below 1,15,000"}</dd>`+(nx?`<dt>Next slab ${nx[1]}</dt><dd>${fmt(nx[0])}</dd><dt>Gap</dt><dd>${fmt(nx[0]-d.g)}</dd>`:"");})()}</dl>
+    <div class="bars">${(()=>{const tot=months.map((_,i)=>d3.sum(DS.rows,r=>r.m[i])+(d.data.m[i]||0)),mx=d3.max(tot)||1;return tot.map((t,i)=>`<div class="${i>closed?"mtd":""}" style="height:${Math.max(2,100*t/mx)}%" title="${months[i]} ${fmt(t)}"></div>`).join("");})()}</div>
     <div class="months">${monthsLbl}</div>`+kidList(kids,"Legs by group BV")+howTo();return;}
   side.innerHTML=`<h2>${d.data.n}</h2><div class="sub">Depth ${d.depth} · under ${d.parent.data.n} · ${d.data.c||"—"}${d.data.j?" · joined "+d.data.j:""}</div>
   <span class="pill" style="--c:${COL[d.st]}">${LBL[d.st]}${d.data.dw?" · Display Wall":""}</span>
